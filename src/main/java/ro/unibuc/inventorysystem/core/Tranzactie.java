@@ -63,4 +63,12 @@ public class Tranzactie {
                 && Objects.equals(depozit, that.depozit) && Objects.equals(partener, that.partener);
     }
 
+    @Override
+    public String toString() {
+        return "Tranzactie " + tip + "#" + id + "din data de " + timestamp + "\n" +
+                produs.toString() + "\n" +
+                "cantitate: " + quantity +
+                " " + depozit.toString() +
+                "\n" + partener.toString();
+    }
 }

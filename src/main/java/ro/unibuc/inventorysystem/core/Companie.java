@@ -39,4 +39,12 @@ public class Companie {
     public Persoana getPersoanaContact() {
         return persoanaContact;
     }
+
+    @Override
+    public String toString() {
+        return "Companie " + nume +
+                ", cui " + cui +
+                ", adresa " + adresa +
+                ", persoana de contact " + persoanaContact.toString();
+    }
 }
