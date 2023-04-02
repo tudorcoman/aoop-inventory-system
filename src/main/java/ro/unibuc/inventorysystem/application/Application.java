@@ -1,4 +1,4 @@
-package ro.unibuc.inventorysystem;
+package ro.unibuc.inventorysystem.application;
 
 import ro.unibuc.inventorysystem.core.Angajat;
 import ro.unibuc.inventorysystem.core.Companie;
@@ -31,7 +31,7 @@ public final class Application {
 
     private final DepoziteRepository depoziteRepository;
 
-    public Application() {
+    Application() {
         angajatRepository = new AngajatRepository();
         clientiRepository = new ClientiRepository();
         furnizoriRepository = new FurnizoriRepository();
@@ -210,7 +210,7 @@ public final class Application {
         return new HashSet<>(depoziteRepository.retrieve());
     }
 
-    public List<Depozit> updateDepozit(int id, String nume, String adresa, int idAngajat) {
+    public void updateDepozit(int id, String nume, String adresa, int idAngajat) {
         final Optional<Angajat> ang = angajatRepository.getById(idAngajat);
         if (ang.isEmpty()) {
             throw new NoSuchElementException("Angajatul nu exista");
@@ -223,7 +223,6 @@ public final class Application {
 
         final Depozit depozitNou = new Depozit(nume, adresa, dep.get().getStoc(), ang.get());
         depoziteRepository.update(id, depozitNou);
-        return depoziteRepository.retrieve();
     }
 
     public void stergeDepozit(int id) {
@@ -315,5 +314,29 @@ public final class Application {
 
     public Optional<Companie> searchClient(int id) {
         return clientiRepository.getById(id);
+    }
+
+    public Map<Integer, Angajat> getAngajatiTable() {
+        return angajatRepository.retrieveTable();
+    }
+
+    public Map<Integer, Companie> getFurnizoriTable() {
+        return furnizoriRepository.retrieveTable();
+    }
+
+    public Map<Integer, Companie> getClientiTable() {
+        return clientiRepository.retrieveTable();
+    }
+
+    public Map<Integer, Depozit> getDepoziteTable() {
+        return depoziteRepository.retrieveTable();
+    }
+
+    public Map<Integer, Tranzactie> getTranzactiiTable() {
+        return tranzactieRepository.retrieveTable();
+    }
+
+    public Map<Integer, Produs> getProduseTable() {
+        return produsRepository.retrieveTable();
     }
 }

@@ -19,6 +19,10 @@ public abstract class CrudRepository<T> implements Repository<T> {
     public final List<T> retrieve() {
         return new ArrayList<>(objects.values());
     }
+    @Override
+    public final Map<Integer, T> retrieveTable() {
+        return new HashMap<>(objects);
+    }
 
     protected String getTable() {
         return table;
