@@ -53,7 +53,8 @@ public class Depozit implements Comparable<Depozit> {
     public String toString() {
         return "Depozitul " + nume + "\n"
                 + "Adresa: " + adresa + "\n"
-                + "Administrat de: " + manager.toString();
+                + "Administrat de: " + manager.toString() + "\n"
+                + "Stoc: " + stoc.toString();
     }
 
     private Double totalBucati() {
