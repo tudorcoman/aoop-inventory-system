@@ -25,7 +25,11 @@ public enum Meniu {
 
     public void runMeniu() {
         while(true) {
-            start();
+            try {
+                start();
+            } catch(Exception e) {
+                System.out.println("Eroare: " + e.getMessage());
+            }
         }
     }
 
