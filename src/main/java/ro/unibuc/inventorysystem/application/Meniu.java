@@ -122,7 +122,8 @@ public enum Meniu {
             System.out.println("[3]. Furnizor");
             System.out.println("[4]. Client");
             System.out.println("[5]. Produs");
-            System.out.println("[6]. Inapoi");
+            System.out.println("[6]. Tranzactie");
+            System.out.println("[7]. Inapoi");
 
             int op1 = in.nextInt();
             if (op1 == 1) {
@@ -151,6 +152,11 @@ public enum Meniu {
                 a.stergeProdus(id);
                 System.out.println("Produs sters cu succes!");
             } else if (op1 == 6) {
+                System.out.println("Introduceti id-ul tranzactiei: ");
+                int id = in.nextInt();
+                a.stergeTranzactie(id);
+                System.out.println("Tranzactie stearsa cu succes!");
+            } else if (op1 == 7) {
                 start();
             }
         } else if (op == 3) {

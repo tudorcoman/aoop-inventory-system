@@ -56,4 +56,12 @@ public class Persoana {
                 && Objects.equals(lastName, persoana.lastName) && Objects.equals(email, persoana.email)
                 && Objects.equals(phone, persoana.phone);
     }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 }

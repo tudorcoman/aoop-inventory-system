@@ -1,9 +1,10 @@
 package ro.unibuc.inventorysystem.infra.repository;
 
 public class FurnizoriRepository extends CompanieRepository {
-    private static final String TABLE_NAME = "TABEL_FURNIZORI";
+    private static final String TABLE_NAME = "furnizori";
 
-    public FurnizoriRepository() {
-        super(TABLE_NAME);
+    public FurnizoriRepository(PersoanaRepository persoanaRepository) {
+        super(TABLE_NAME, persoanaRepository);
     }
+
 }

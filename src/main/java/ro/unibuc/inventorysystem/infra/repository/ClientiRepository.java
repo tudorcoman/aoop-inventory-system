@@ -1,10 +1,9 @@
 package ro.unibuc.inventorysystem.infra.repository;
 
 public final class ClientiRepository extends CompanieRepository {
-    private static final String TABLE_NAME = "TABEL_CLIENTI";
+    private static final String TABLE_NAME = "clienti";
 
-    public ClientiRepository() {
-        super(TABLE_NAME);
+    public ClientiRepository(PersoanaRepository persoanaRepository) {
+        super(TABLE_NAME, persoanaRepository);
     }
-
 }

@@ -10,6 +10,7 @@ import ro.unibuc.inventorysystem.infra.repository.AngajatRepository;
 import ro.unibuc.inventorysystem.infra.repository.ClientiRepository;
 import ro.unibuc.inventorysystem.infra.repository.DepoziteRepository;
 import ro.unibuc.inventorysystem.infra.repository.FurnizoriRepository;
+import ro.unibuc.inventorysystem.infra.repository.PersoanaRepository;
 import ro.unibuc.inventorysystem.infra.repository.ProdusRepository;
 import ro.unibuc.inventorysystem.infra.repository.TranzactieRepository;
 
@@ -31,13 +32,16 @@ public final class Application {
 
     private final DepoziteRepository depoziteRepository;
 
+    private final PersoanaRepository persoanaRepository;
+
     Application() {
-        angajatRepository = new AngajatRepository();
-        clientiRepository = new ClientiRepository();
-        furnizoriRepository = new FurnizoriRepository();
+        persoanaRepository = new PersoanaRepository();
+        angajatRepository = new AngajatRepository(persoanaRepository);
+        clientiRepository = new ClientiRepository(persoanaRepository);
+        furnizoriRepository = new FurnizoriRepository(persoanaRepository);
         produsRepository = new ProdusRepository();
-        tranzactieRepository = new TranzactieRepository();
-        depoziteRepository = new DepoziteRepository();
+        depoziteRepository = new DepoziteRepository(angajatRepository);
+        tranzactieRepository = new TranzactieRepository(produsRepository, furnizoriRepository, clientiRepository, depoziteRepository);
     }
 
     public void adaugaProdus(Produs p) {
@@ -338,5 +342,9 @@ public final class Application {
 
     public Map<Integer, Produs> getProduseTable() {
         return produsRepository.retrieveTable();
+    }
+
+    public void stergeTranzactie(int id) {
+        tranzactieRepository.delete(id);
     }
 }
