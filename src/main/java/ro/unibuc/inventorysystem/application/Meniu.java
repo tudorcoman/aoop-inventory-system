@@ -1,5 +1,6 @@
 package ro.unibuc.inventorysystem.application;
 
+import ro.unibuc.inventorysystem.application.model.Application;
 import ro.unibuc.inventorysystem.core.Angajat;
 import ro.unibuc.inventorysystem.core.Companie;
 import ro.unibuc.inventorysystem.core.Depozit;
@@ -7,6 +8,7 @@ import ro.unibuc.inventorysystem.core.Persoana;
 import ro.unibuc.inventorysystem.core.Produs;
 import ro.unibuc.inventorysystem.core.Tranzactie;
 
+import java.lang.reflect.Proxy;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,9 +20,13 @@ public enum Meniu {
     INSTANCE;
 
     private Application a;
+    private ApplicationProxy proxy;
 
     Meniu() {
-        this.a = new Application();
+        final Application app = new ApplicationImpl();
+        this.proxy = new ApplicationProxy(app);
+        this.a = (Application) Proxy.newProxyInstance(ApplicationImpl.class.getClassLoader(), new Class<?>[] { Application.class }, proxy);
+
     }
 
     public void runMeniu() {

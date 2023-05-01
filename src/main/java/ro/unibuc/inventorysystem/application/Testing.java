@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class Testing {
     void testing() {
-        final Application a = new Application();
+        final ApplicationImpl a = new ApplicationImpl();
 
         final Angajat tudor = new Angajat("Tudor", "Coman", 1234567890124L, "0798765432", "tudor@gmail.com", Optional.empty());
         a.adaugaAngajat(tudor);
