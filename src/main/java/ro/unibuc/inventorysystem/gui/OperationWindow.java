@@ -2,10 +2,15 @@ package ro.unibuc.inventorysystem.gui;
 
 import ro.unibuc.inventorysystem.application.ApplicationWrapper;
 import ro.unibuc.inventorysystem.application.model.Application;
+import ro.unibuc.inventorysystem.core.Angajat;
+import ro.unibuc.inventorysystem.core.Companie;
+import ro.unibuc.inventorysystem.core.Depozit;
+import ro.unibuc.inventorysystem.core.Produs;
 
 import javax.swing.*;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 
 public final class OperationWindow extends GuiWindow {
     private JButton adaugareButton;
@@ -67,6 +72,70 @@ public final class OperationWindow extends GuiWindow {
         };
     }
 
+    private Function<Integer, Void> getDeleteFunction() {
+        final List<Object> entities = getEntities();
+        switch (selectedEntity) {
+            case "Angajat" -> {
+                return (id) -> {
+                    final Angajat angajat = (Angajat) entities.get(id);
+                    final Integer idAngajat = ApplicationWrapper.INSTANCE.application().searchAngajat(angajat).get();
+                    ApplicationWrapper.INSTANCE.application().stergeAngajat(idAngajat);
+                    return null;
+                };
+            }
+            case "Depozit" -> {
+                return (id) -> {
+                    final Depozit depozit = (Depozit) entities.get(id);
+                    final Integer idDepozit = ApplicationWrapper.INSTANCE.application().searchDepozit(depozit).get();
+                    ApplicationWrapper.INSTANCE.application().stergeDepozit(idDepozit);
+                    return null;
+                };
+            }
+
+            case "Furnizor" -> {
+                return (id) -> {
+                    final Companie furnizor = (Companie) entities.get(id);
+                    final Integer idFurnizor = ApplicationWrapper.INSTANCE.application().searchFurnizor(furnizor).get();
+                    ApplicationWrapper.INSTANCE.application().stergeFurnizor(idFurnizor);
+                    return null;
+                };
+            }
+
+            case "Client" -> {
+                return (id) -> {
+                    final Companie client = (Companie) entities.get(id);
+                    final Integer idClient = ApplicationWrapper.INSTANCE.application().searchClient(client).get();
+                    ApplicationWrapper.INSTANCE.application().stergeClient(idClient);
+                    return null;
+                };
+            }
+
+            case "Produs" -> {
+                return (id) -> {
+                    final Produs produs = (Produs) entities.get(id);
+                    final Integer idProdus = ApplicationWrapper.INSTANCE.application().searchProdus(produs).get();
+                    ApplicationWrapper.INSTANCE.application().stergeProdus(idProdus);
+                    return null;
+                };
+            }
+
+            default -> {
+                return null;
+            }
+        }
+    }
+
+    private List<String> columnNames() {
+        return switch(selectedEntity) {
+            case "Angajat" -> Arrays.asList("FirstName", "LastName", "Cnp", "Phone", "Email", "ManagerName");
+            case "Depozit" -> Arrays.asList("Nume", "Adresa", "ManagerName");
+            case "Furnizor", "Client" -> Arrays.asList("Nume", "Cui", "Adresa", "NumePersoanaContact");
+            case "Tranzactie" -> Arrays.asList("ID", "Timestamp", "Tip", "NumeProdus", "Quantity", "NumeDepozit", "NumePartener");
+            case "Produs" -> Arrays.asList("Nume", "Categorie", "PretCumparare", "PretVanzare");
+            default -> null;
+        };
+    }
+
     private void eventListeners() {
         adaugareButton.addActionListener(e -> {
             if (e.getSource() == adaugareButton) {
@@ -81,6 +150,24 @@ public final class OperationWindow extends GuiWindow {
         cautareButton.addActionListener(e -> {
             if (e.getSource() == cautareButton) {
                 CautareWindow dialog = new CautareWindow(getEntities());
+                dialog.pack();
+                dialog.setSize(480, 240);
+                dialog.setVisible(true);
+            }
+        });
+
+        stergereButton.addActionListener(e -> {
+            if (e.getSource() == stergereButton) {
+                StergereWindow dialog = new StergereWindow(getEntities(), getDeleteFunction());
+                dialog.pack();
+                dialog.setSize(480, 240);
+                dialog.setVisible(true);
+            }
+        });
+
+        afisareButton.addActionListener(e -> {
+            if (e.getSource() == afisareButton) {
+                AfisareWindow dialog = new AfisareWindow(getEntities(), columnNames());
                 dialog.pack();
                 dialog.setSize(480, 240);
                 dialog.setVisible(true);

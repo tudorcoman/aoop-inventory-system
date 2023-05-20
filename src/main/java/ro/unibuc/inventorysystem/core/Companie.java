@@ -40,6 +40,10 @@ public class Companie {
         return persoanaContact;
     }
 
+    public String getNumePersoanaContact() {
+        return persoanaContact.getNume();
+    }
+
     @Override
     public String toString() {
         return "Companie " + nume +

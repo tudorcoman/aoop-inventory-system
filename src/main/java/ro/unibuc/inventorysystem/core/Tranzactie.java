@@ -71,4 +71,16 @@ public class Tranzactie {
                 " " + depozit.toString() +
                 "\n" + partener.toString();
     }
+
+    public String getNumeProdus() {
+        return produs.getNume();
+    }
+
+    public String getNumeDepozit() {
+        return depozit.getNume();
+    }
+
+    public String getNumePartener() {
+        return partener.getNume();
+    }
 }
