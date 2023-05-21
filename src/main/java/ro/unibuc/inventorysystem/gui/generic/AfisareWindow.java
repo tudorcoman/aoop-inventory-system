@@ -1,4 +1,6 @@
-package ro.unibuc.inventorysystem.gui;
+package ro.unibuc.inventorysystem.gui.generic;
+
+import ro.unibuc.inventorysystem.gui.GuiWindow;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -38,7 +40,7 @@ public class AfisareWindow extends GuiWindow {
     }
 
     @Override
-    JPanel getPanel() {
+    protected JPanel getPanel() {
         return panel1;
     }
 }

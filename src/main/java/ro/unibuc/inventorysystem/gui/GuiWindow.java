@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public abstract class GuiWindow extends JFrame {
-    abstract JPanel getPanel();
+    protected abstract JPanel getPanel();
 
     protected void initializeWindow() {
         setLayout(new FlowLayout());

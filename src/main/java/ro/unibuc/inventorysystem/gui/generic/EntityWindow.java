@@ -1,8 +1,8 @@
-package ro.unibuc.inventorysystem.gui;
+package ro.unibuc.inventorysystem.gui.generic;
+
+import ro.unibuc.inventorysystem.gui.GuiWindow;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Collections;
 
 public final class EntityWindow extends GuiWindow {
@@ -45,7 +45,7 @@ public final class EntityWindow extends GuiWindow {
 
         furnizorButton.addActionListener(e -> {
             if (e.getSource() == furnizorButton) {
-                OperationWindow ow = new OperationWindow("Companie");
+                OperationWindow ow = new OperationWindow("Furnizor");
                 //ow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 ow.setSize(300, 300);
                 ow.setVisible(true);
@@ -56,7 +56,7 @@ public final class EntityWindow extends GuiWindow {
 
         clientButton.addActionListener(e -> {
             if (e.getSource() == clientButton) {
-                OperationWindow ow = new OperationWindow("Companie");
+                OperationWindow ow = new OperationWindow("Client");
                 //ow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 ow.setSize(300, 300);
                 ow.setVisible(true);

@@ -6,6 +6,7 @@ import ro.unibuc.inventorysystem.core.CrudRepository;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 
 class CompanieRepository extends CrudRepository<Companie> {
     private final PersoanaRepository persoanaRepository;
@@ -39,6 +40,11 @@ class CompanieRepository extends CrudRepository<Companie> {
 
     @Override
     public boolean update(int id, Companie object) {
+        final Optional<Integer> idPersOpt = persoanaRepository.findByObject(object.getPersoanaContact());
+        if (idPersOpt.isEmpty()) {
+            persoanaRepository.create(object.getPersoanaContact());
+        }
+
         final int idPersoanaContact = persoanaRepository.findByObject(object.getPersoanaContact()).get();
         return persoanaRepository.update(idPersoanaContact, object.getPersoanaContact()) && super.update(id, object);
     }

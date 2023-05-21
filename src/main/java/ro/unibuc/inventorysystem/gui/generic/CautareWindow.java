@@ -1,4 +1,4 @@
-package ro.unibuc.inventorysystem.gui;
+package ro.unibuc.inventorysystem.gui.generic;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

@@ -1,7 +1,6 @@
 package ro.unibuc.inventorysystem;
 
-import ro.unibuc.inventorysystem.gui.EntityWindow;
-import ro.unibuc.inventorysystem.gui.OperationWindow;
+import ro.unibuc.inventorysystem.gui.generic.EntityWindow;
 
 import javax.swing.*;
 

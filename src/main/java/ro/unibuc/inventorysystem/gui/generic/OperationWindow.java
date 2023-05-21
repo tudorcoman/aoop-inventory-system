@@ -1,4 +1,4 @@
-package ro.unibuc.inventorysystem.gui;
+package ro.unibuc.inventorysystem.gui.generic;
 
 import ro.unibuc.inventorysystem.application.ApplicationWrapper;
 import ro.unibuc.inventorysystem.application.model.Application;
@@ -6,6 +6,16 @@ import ro.unibuc.inventorysystem.core.Angajat;
 import ro.unibuc.inventorysystem.core.Companie;
 import ro.unibuc.inventorysystem.core.Depozit;
 import ro.unibuc.inventorysystem.core.Produs;
+import ro.unibuc.inventorysystem.gui.GuiWindow;
+import ro.unibuc.inventorysystem.gui.create.CreateAngajatWindow;
+import ro.unibuc.inventorysystem.gui.create.CreateCompanieWindow;
+import ro.unibuc.inventorysystem.gui.create.CreateDepozitWindow;
+import ro.unibuc.inventorysystem.gui.create.CreateProdusWindow;
+import ro.unibuc.inventorysystem.gui.create.CreateTranzactieWindow;
+import ro.unibuc.inventorysystem.gui.update.UpdateAngajatWindow;
+import ro.unibuc.inventorysystem.gui.update.UpdateCompanieWindow;
+import ro.unibuc.inventorysystem.gui.update.UpdateDepozitWindow;
+import ro.unibuc.inventorysystem.gui.update.UpdateProdusWindow;
 
 import javax.swing.*;
 import java.util.Arrays;
@@ -130,7 +140,7 @@ public final class OperationWindow extends GuiWindow {
             case "Angajat" -> Arrays.asList("FirstName", "LastName", "Cnp", "Phone", "Email", "ManagerName");
             case "Depozit" -> Arrays.asList("Nume", "Adresa", "ManagerName");
             case "Furnizor", "Client" -> Arrays.asList("Nume", "Cui", "Adresa", "NumePersoanaContact");
-            case "Tranzactie" -> Arrays.asList("ID", "Timestamp", "Tip", "NumeProdus", "Quantity", "NumeDepozit", "NumePartener");
+            case "Tranzactie" -> Arrays.asList("Id", "Timestamp", "Tip", "NumeProdus", "Quantity", "NumeDepozit", "NumePartener");
             case "Produs" -> Arrays.asList("Nume", "Categorie", "PretCumparare", "PretVanzare");
             default -> null;
         };
@@ -139,11 +149,32 @@ public final class OperationWindow extends GuiWindow {
     private void eventListeners() {
         adaugareButton.addActionListener(e -> {
             if (e.getSource() == adaugareButton) {
-                if ("Angajat".equals(selectedEntity)) {
-                    CreateAngajatWindow dialog = new CreateAngajatWindow();
-                    dialog.pack();
-                    dialog.setVisible(true);
-                }
+                JDialog dialog = switch(selectedEntity) {
+                    case "Angajat" -> new CreateAngajatWindow();
+                    case "Depozit" -> new CreateDepozitWindow();
+                    case "Produs" -> new CreateProdusWindow();
+                    case "Furnizor", "Client" -> new CreateCompanieWindow(selectedEntity);
+                    case "Tranzactie" -> new CreateTranzactieWindow();
+                    default -> null;
+                };
+
+                dialog.pack();
+                dialog.setVisible(true);
+            }
+        });
+
+        actualizareButton.addActionListener(e -> {
+            if (e.getSource() == actualizareButton) {
+                JDialog dialog = switch(selectedEntity) {
+                    case "Angajat" -> new UpdateAngajatWindow();
+                    case "Depozit" -> new UpdateDepozitWindow();
+                    case "Produs" -> new UpdateProdusWindow();
+                    case "Furnizor", "Client" -> new UpdateCompanieWindow(selectedEntity);
+                    default -> null;
+                };
+
+                dialog.pack();
+                dialog.setVisible(true);
             }
         });
 
