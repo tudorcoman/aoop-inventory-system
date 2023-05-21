@@ -6,8 +6,6 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-//        Meniu.INSTANCE.runMeniu();
-        //OperationWindow gui = new OperationWindow();
         EntityWindow gui = new EntityWindow();
         gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gui.setSize(300, 300);
