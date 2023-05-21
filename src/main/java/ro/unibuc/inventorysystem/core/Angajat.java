@@ -29,6 +29,10 @@ public class Angajat extends Persoana {
         this.manager = Optional.of(manager);
     }
 
+    public String getManagerName() {
+        return manager.map(Persoana::getNume).orElse("");
+    }
+
     @Override
     public String toString() {
         final String basicInfo = "Angajat " + super.toString();

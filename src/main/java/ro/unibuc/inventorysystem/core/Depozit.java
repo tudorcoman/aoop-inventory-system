@@ -45,6 +45,10 @@ public class Depozit implements Comparable<Depozit> {
         return manager;
     }
 
+    public String getManagerName() {
+        return manager.getNume();
+    }
+
     public void setManager(Angajat manager) {
         this.manager = manager;
     }

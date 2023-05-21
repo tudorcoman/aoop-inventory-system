@@ -38,6 +38,10 @@ public class Persoana {
         return lastName;
     }
 
+    public String getNume() {
+        return firstName + " " + lastName;
+    }
+
     public long getCnp() {
         return cnp;
     }

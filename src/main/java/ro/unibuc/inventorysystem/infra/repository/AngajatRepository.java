@@ -93,6 +93,6 @@ public final class AngajatRepository extends CrudRepository<Angajat> {
 
     @Override
     public boolean delete(int id) {
-        return persoanaRepository.delete(id) && super.delete(id);
+        return super.delete(id) && persoanaRepository.delete(id) ;
     }
 }
