@@ -32,7 +32,12 @@ public abstract class CrudRepository<T> implements Repository<T> {
             final ResultSet rs = ps.getGeneratedKeys();
             rs.next();
             final int id = rs.getInt(1);
-            objects.put(id, object);
+            if (object instanceof Tranzactie) {
+                final Tranzactie object2 = new Tranzactie(id, ((Tranzactie) object).getProdus(), ((Tranzactie) object).getTip(), ((Tranzactie) object).getTimestamp(), ((Tranzactie) object).getQuantity(), ((Tranzactie) object).getDepozit(), ((Tranzactie) object).getPartener());
+                objects.put(id, (T) object2);
+            } else {
+                objects.put(id, object);
+            }
             return true;
         } catch (SQLException e) {
             e.printStackTrace();

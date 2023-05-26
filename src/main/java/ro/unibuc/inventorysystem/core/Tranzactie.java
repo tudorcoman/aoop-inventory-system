@@ -1,5 +1,7 @@
 package ro.unibuc.inventorysystem.core;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
@@ -82,5 +84,10 @@ public class Tranzactie {
 
     public String getNumePartener() {
         return partener.getNume();
+    }
+
+    public String getDataOra() {
+        final DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+        return dateFormat.format(timestamp);
     }
 }

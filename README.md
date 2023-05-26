@@ -24,7 +24,9 @@ Acesta este proiectul meu pentru cursul de programare avansata pe obiecte, anul 
 - `Produs` - clasa care modeleaza un produs
 - `TipTranzactie` - enum pentru tranzactiile de intrare si de iesire 
 - `Utilities` - clasa cu metode utilitare statice 
-- `Application` - clasa serviciu care contine operatiile care pot fi efectuate in sistem
+- `Application` - interfata care contine metodele sistemului
+- `ApplicationImpl` - implementarea interfetei `Application`
+- `ApplicationWrapper` - clasa singleton care contine o instanta pentru `ApplicationImpl`
 - `Main` - clasa prin care se executa programul
 
 ## Functionalitati

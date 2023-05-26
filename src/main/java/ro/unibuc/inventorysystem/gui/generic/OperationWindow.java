@@ -140,7 +140,7 @@ public final class OperationWindow extends GuiWindow {
             case "Angajat" -> Arrays.asList("FirstName", "LastName", "Cnp", "Phone", "Email", "ManagerName");
             case "Depozit" -> Arrays.asList("Nume", "Adresa", "ManagerName");
             case "Furnizor", "Client" -> Arrays.asList("Nume", "Cui", "Adresa", "NumePersoanaContact");
-            case "Tranzactie" -> Arrays.asList("Id", "Timestamp", "Tip", "NumeProdus", "Quantity", "NumeDepozit", "NumePartener");
+            case "Tranzactie" -> Arrays.asList("Id", "DataOra", "Tip", "NumeProdus", "Quantity", "NumeDepozit", "NumePartener");
             case "Produs" -> Arrays.asList("Nume", "Categorie", "PretCumparare", "PretVanzare");
             default -> null;
         };
